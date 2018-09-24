@@ -13,8 +13,6 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
 import java.io.IOException;
-import java.util.StringTokenizer;
-
 
 public class TiereStorageMetrics {
 
@@ -27,9 +25,7 @@ public class TiereStorageMetrics {
 
         public void map(Object key, Text val, Context con) {
 
-//            StringTokenizer stringTokenizer = new StringTokenizer(val.toString(), ",");
-//            System.out.println(val.toString());
-//            Double size = 0.0;
+
             Gson gson = new Gson();
             Data data = gson.fromJson(val.toString(),Data.class);
 
@@ -50,46 +46,6 @@ public class TiereStorageMetrics {
 
             }
 
-
-
-//            while (stringTokenizer.hasMoreTokens()) {
-//
-//                String temp = stringTokenizer.nextToken();
-//                if (temp.contains("HOT")) {
-//
-//                    size = Double.parseDouble(temp.split(":")[1]);
-//                    try {
-//                        con.write(new Text("HOT"), new DoubleWritable(size));
-//                    } catch (InterruptedException e) {
-//
-//                    } catch (IOException e) {
-//
-//                    }
-//
-//                } else if (temp.contains("COLD")) {
-//
-//                    size = Double.parseDouble(temp.split(":")[1]);
-//                    try {
-//                        con.write(new Text("COLD"), new DoubleWritable(size));
-//                    } catch (InterruptedException e) {
-//
-//                    } catch (IOException e) {
-//
-//                    }
-//
-//
-//                } else if (temp.contains("SSD")) {
-//
-//                    size = Double.parseDouble(temp.split(":")[1]);
-//                    try {
-//                        con.write(new Text("SSD"), new DoubleWritable(size));
-//                    } catch (InterruptedException e) {
-//
-//                    } catch (IOException e) {
-//
-//                    }
-//                }
-//            }
         }
 
 
